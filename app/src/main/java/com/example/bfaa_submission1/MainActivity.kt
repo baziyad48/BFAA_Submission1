@@ -2,10 +2,10 @@ package com.example.bfaa_submission1
 
 import android.content.Intent
 import android.content.res.TypedArray
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar?.setTitle("Github User")
-        val listView:ListView = findViewById(R.id.list_view)
+        supportActionBar?.title = "Github User"
+        val listView: ListView = findViewById(R.id.list_view)
         adapter = Adapter(this)
         listView.adapter = adapter
 
         prepare()
         addItem()
-        
+
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val intent = Intent(this@MainActivity, DetailUser::class.java)
             intent.putExtra("data", users[position])
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun prepare(){
+    private fun prepare() {
         dataName = resources.getStringArray(R.array.name)
         dataUsername = resources.getStringArray(R.array.username)
         dataAvatar = resources.obtainTypedArray(R.array.avatar)
@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity() {
         dataFollowing = resources.getStringArray(R.array.following)
     }
 
-    private fun addItem(){
-        for(position in dataName.indices){
+    private fun addItem() {
+        for (position in dataName.indices) {
             val user = User(
                 dataUsername[position],
                 dataName[position],
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             )
             users.add(user)
         }
-        
+
         adapter.users = users
     }
 }

@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class Adapter internal constructor(private val context: Context): BaseAdapter(){
+class Adapter internal constructor(private val context: Context) : BaseAdapter() {
     internal var users = arrayListOf<User>()
 
     override fun getCount(): Int {
@@ -26,7 +26,7 @@ class Adapter internal constructor(private val context: Context): BaseAdapter(){
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         var itemView = p1
 
-        if(itemView == null){
+        if (itemView == null) {
             itemView = LayoutInflater.from(context).inflate(R.layout.rv_user, p2, false)
         }
 
@@ -36,12 +36,12 @@ class Adapter internal constructor(private val context: Context): BaseAdapter(){
         return itemView
     }
 
-    private inner class ViewHolder internal constructor(view: View){
-        private val tv_name:TextView = view.findViewById(R.id.tv_name)
-        private val tv_username:TextView = view.findViewById(R.id.tv_username)
-        private val img_user:ImageView = view.findViewById(R.id.img_user)
+    private inner class ViewHolder(view: View) {
+        private val tv_name: TextView = view.findViewById(R.id.tv_name)
+        private val tv_username: TextView = view.findViewById(R.id.tv_username)
+        private val img_user: ImageView = view.findViewById(R.id.img_user)
 
-        internal fun bind(user: User){
+        fun bind(user: User) {
             tv_name.text = user.name
             tv_username.text = user.username
             img_user.setImageResource(user.avatar)
